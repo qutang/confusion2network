@@ -13,3 +13,5 @@ RoxygenNote: 6.0.1
 Imports: plyr,
     visNetwork,
     stringr
+URL: https://github.com/qutang/confusion2network
+BugReports: https://github.com/qutang/confusion2network/issues
