@@ -1,0 +1,15 @@
+Package: confusion2network
+Type: Package
+Title: Convert confusion matrix to network graph
+Version: 0.1.0
+Authors@R: c(
+    person("Qu", "Tang",, email = "tang.q@husky.neu.edu", role = c("aut", "cre"))
+    )
+Description: Turn a confusion matrix or prediction dataframe into static or interactive confusion network graph
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
+Imports: plyr,
+    visNetwork,
+    stringr

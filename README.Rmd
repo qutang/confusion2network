@@ -1,0 +1,71 @@
+---
+title: "Home"
+output: html_document
+---
+[![Travis-CI Build Status](https://travis-ci.org/qutang/confusion2network.svg?branch=master)](https://travis-ci.org/qutang/confusion2network)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/confusion2network)](https://cran.r-project.org/package=confusion2network)
+
+## confusion2network
+
+`confusion2network` is an R package that converts confusion matrix or classification predictions into confusion graph/network for performance investigation.
+
+__This package is still under active development and is subject to change, so documentation is lacking. But feel free to fork and send pull request. Use it with your own caution.__
+
+---
+
+## Installation
+```{r, eval=FALSE, message=FALSE, warning=FALSE, include=TRUE}
+# install devtools if not
+install.packages("devtools")
+# install through github for now
+devtools::install_github("qutang/confusion2network")
+```
+
+
+## Highlight features
+
+* __node size__: the bigger, the more misclassified samples for this class
+* __edge opacity__ and __edge width__
+
+    * for self reference edges, the more transparent or thinner the better it performs
+    * for other edges, the more transparent or thinner the less misclassification rate
+  
+* __node click__: click to highlight nodes and its up to 2 degree connections, indicating which classes may be misclassified with it.
+
+## Example
+
+```{r, include=FALSE}
+require(confusion2network)
+```
+
+### Confusion matrix as a graph
+```{r confusion2network, echo=TRUE, message=FALSE, warning=FALSE, fig.align = "center"}
+confusion2network(sample_confusion_matrix, 
+                  true_label_prefix = "TRUE_", 
+                  pred_label_prefix = "PREDICT_", 
+                  height = "400px", 
+                  width = "60%")
+```
+
+### Prediction dataframe as a graph
+
+#### Sample prediction matrix
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+head(sample_prediction_dataframe)
+```
+
+#### Convert prediction matrix to a network
+```{r prediction2network, echo=TRUE, fig.align="center", message=FALSE, warning=FALSE}
+prediction2network(sample_prediction_dataframe, 
+                   true_col = "CLASS_ID", 
+                   pred_col = "PRED_CLASS_ID",
+                   true_labels = c("Transition", "Sitting", "Upright", "Lying"), 
+                   pred_labels = c("Sitting", "Upright", "Lying"), 
+                   height = "400px", 
+                   width = "60%")
+```
+
+## Acknowledge
+[`visNetwork`](http://datastorm-open.github.io/visNetwork/) and [`vis.js`](http://visjs.org/docs/network/) is the backend for the interactive network building. Refer to their API for your own customization.
+
+
